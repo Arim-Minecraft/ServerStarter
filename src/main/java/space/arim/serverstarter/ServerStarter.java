@@ -28,6 +28,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ServerStarter extends JavaPlugin implements Listener {
 
 	public static volatile boolean open = false;
+	public static volatile String message = "&3&lServer starting, please wait...";
 	
 	@Override
 	public void onLoad() {
@@ -43,7 +44,7 @@ public class ServerStarter extends JavaPlugin implements Listener {
 	private void onConnect(AsyncPlayerPreLoginEvent evt) {
 		if (!open) {
 			evt.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER,
-					ChatColor.translateAlternateColorCodes('&', "&3&lServer starting, please wait..."));
+					ChatColor.translateAlternateColorCodes('&', message));
 		}
 	}
 	
