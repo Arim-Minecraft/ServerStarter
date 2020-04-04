@@ -8,6 +8,11 @@
 	<version>0.1.0-SNAPSHOT</version>
 	
 	<name>ServerStarter</name>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -20,6 +25,17 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<distributionManagement>
+		<repository>
+			<id>arim-repo</id>
+			<url>https://maven.cloudsmith.io/anand-beh/arim-repo/</url>
+		</repository>
+		<snapshotRepository>
+			<id>arim-repo</id>
+			<url>https://maven.cloudsmith.io/anand-beh/arim-repo/</url>
+		</snapshotRepository>
+	</distributionManagement>
 	
 	<dependencies>
 		<dependency>
