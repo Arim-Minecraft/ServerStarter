@@ -1,0 +1,4 @@
+name: ${project.name}
+main: ${groupId}.serverstarter.ServerStarter
+version: 0.1.0
+author: A248
