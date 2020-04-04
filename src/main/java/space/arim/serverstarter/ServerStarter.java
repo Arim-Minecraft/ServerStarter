@@ -25,11 +25,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import ch.njol.skript.Skript;
-
 public class ServerStarter extends JavaPlugin implements Listener {
 
-	static boolean open = false;
+	public static volatile boolean open = false;
 	
 	@Override
 	public void onLoad() {
@@ -38,7 +36,7 @@ public class ServerStarter extends JavaPlugin implements Listener {
 	
 	@Override
 	public void onEnable() {
-		Skript.registerEffect(EffOpenServer.class, "serverstarter open server");
+
 	}
 	
 	@EventHandler(priority = EventPriority.LOWEST)
