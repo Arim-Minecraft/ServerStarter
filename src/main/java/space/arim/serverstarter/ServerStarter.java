@@ -31,18 +31,14 @@ public class ServerStarter extends JavaPlugin implements Listener {
 	public static volatile String message = ChatColor.translateAlternateColorCodes('&', "&3&lServer starting, please wait...");
 	
 	@Override
-	public void onLoad() {
-		getServer().getPluginManager().registerEvents(this, this);
-	}
-	
-	@Override
 	public void onEnable() {
-
+		getServer().getPluginManager().registerEvents(this, this);
 	}
 	
 	@EventHandler(priority = EventPriority.LOWEST)
 	private void onConnect(AsyncPlayerPreLoginEvent evt) {
 		if (!open) {
+			getLogger().info("Blocked connection from " + evt.getName() + " (" + evt.getAddress().getHostAddress() + ") since the server is still starting.");
 			evt.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, message);
 		}
 	}
