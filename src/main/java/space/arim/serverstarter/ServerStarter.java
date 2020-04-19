@@ -18,6 +18,8 @@
  */
 package space.arim.serverstarter;
 
+import java.util.function.Consumer;
+
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -29,6 +31,7 @@ public class ServerStarter extends JavaPlugin implements Listener {
 
 	public static volatile boolean open = false;
 	public static volatile String message = ChatColor.translateAlternateColorCodes('&', "&3&lServer starting, please wait...");
+	public static volatile Consumer<AsyncPlayerPreLoginEvent> afterAllowed;
 	
 	@Override
 	public void onEnable() {
@@ -40,6 +43,8 @@ public class ServerStarter extends JavaPlugin implements Listener {
 		if (!open) {
 			getLogger().info("Blocked connection from " + evt.getName() + " (" + evt.getAddress().getHostAddress() + ") since the server is still starting.");
 			evt.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, message);
+		} else if (afterAllowed != null) {
+			afterAllowed.accept(evt);
 		}
 	}
 	
